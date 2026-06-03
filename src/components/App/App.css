@@ -116,6 +116,45 @@ button {
   line-height: 1.8;
 }
 
+.CompanionLinks {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  justify-content: center;
+  margin-top: 1.1rem;
+}
+
+.CompanionLink {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.34);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  display: inline-flex;
+  font-size: 0.72rem;
+  font-weight: 420;
+  justify-content: center;
+  letter-spacing: 0.12em;
+  min-height: 2.4rem;
+  padding: 0.6rem 0.95rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 0.24s ease, opacity 0.24s ease, transform 0.24s ease;
+}
+
+.CompanionLink:hover {
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0.78;
+  transform: translateY(-1px);
+}
+
+.CompanionLinkSecondary {
+  background: rgba(255, 255, 255, 0.22);
+  color: color-mix(in srgb, var(--muted), transparent 18%);
+  font-weight: 360;
+}
+
 .App main {
   align-items: center;
   display: flex;

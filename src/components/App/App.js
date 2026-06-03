@@ -61,6 +61,10 @@ const App = () => {
          <header>
             <h1>Centre Notes</h1>
             <p>Write a thought, hold it tightly, let it pass.</p>
+            <div className="CompanionLinks" aria-label="Companion spaces">
+               <a className="CompanionLink" href="https://soliv1.github.io/Daily-Reflections-App/" target="_blank" rel="noreferrer">Carry this into Daily Reflections</a>
+               <a className="CompanionLink CompanionLinkSecondary" href="https://soliv1.github.io/Seasonal-mind-space/" target="_blank" rel="noreferrer">Explore Seasonal Mind Space</a>
+            </div>
          </header>
          <main>
             <section className="orbStage" aria-live="polite">
