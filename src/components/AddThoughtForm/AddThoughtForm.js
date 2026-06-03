@@ -6,6 +6,8 @@ import './AddThoughtForm.css'
 export const AddThoughtForm = props => {
   const [text, setText] = useState('');
   const handleTextChange = event => setText(event.target.value);
+  const handleFocus = () => props.onFocusChange?.(true);
+  const handleBlur = () => props.onFocusChange?.(false);
 
   const handleSubmit = event => {
       event.preventDefault();
@@ -14,16 +16,19 @@ export const AddThoughtForm = props => {
             id: generateId(),
             text: text,
             expiresAt: getNewExpirationTime(),
-          };
+         };
          props.addThought(thought);
+         props.onFocusChange?.(false);
+         event.currentTarget.querySelector('input[type="text"]').blur();
          setText('');
       }
   };
 
   return (
       <form className='AddThoughtForm' onSubmit={handleSubmit}>
-         <input type='text' aria-label="What's on your mind?" placeholder="What's on your mind?" value={text} onChange={handleTextChange} />
-         <input type='submit' value='Add' />
+         <label htmlFor="thought-input">Micro-note Input</label>
+         <input id="thought-input" type='text' aria-label="Write a small thought" placeholder="Write a small thought..." value={text} onChange={handleTextChange} onFocus={handleFocus} onBlur={handleBlur} />
+         <input type='submit' value='Let go' />
       </form>
    );
 };

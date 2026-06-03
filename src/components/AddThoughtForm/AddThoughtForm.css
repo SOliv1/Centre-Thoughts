@@ -1,46 +1,68 @@
 .AddThoughtForm {
-  max-width: 520px;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 0.75rem;
+  justify-content: center;
+  width: min(100%, 31rem);
+}
+
+.AddThoughtForm label {
+  flex-basis: 100%;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 380;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .AddThoughtForm input {
-  padding: 1.5rem;
-  color: #fff;
-  border: 1px solid #fff;
-  border-radius: 10px;
+  min-height: 3.35rem;
+  padding: 0.9rem 1.05rem;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-weight: 350;
+  letter-spacing: 0.025em;
 }
 
 .AddThoughtForm input[type='text'] {
-  max-width: 400px;
-  width: 100%;
-  background-color: #dc143c;
+  flex: 1 1 320px;
+  min-width: 0;
+  background-color: var(--panel);
+  text-align: center;
 }
 
 .AddThoughtForm input:focus {
-  outline: solid 1px #fff;
+  border-color: var(--panel-strong);
+  outline: solid 3px var(--orb-glow);
 }
 
 .AddThoughtForm input[type='text']::placeholder {
-  color: #fff;
+  color: var(--muted);
+  opacity: 0.82;
 }
 
 .AddThoughtForm input[type='submit'] {
-  max-width: 100px;
-  background-color: #ff6500;
+  flex: 0 0 auto;
+  background-color: var(--button);
+  color: #fff;
+  border-color: transparent;
+  min-width: 6.25rem;
 }
 
 .AddThoughtForm input[type='submit']:hover {
-  background-color: #dc143c;
+  background-color: var(--button-hover);
+}
+
+.App.mood-night .AddThoughtForm input[type='submit'],
+.App.mood-deep-night .AddThoughtForm input[type='submit'] {
+  color: #26302d;
 }
 
 @media (max-width:550px) {
-  .AddThoughtForm {
-    flex-direction: column;
-  }
-
-  .AddThoughtForm input[type='text'] {
-    margin-bottom: 10px;
+  .AddThoughtForm input[type='submit'] {
+    width: 100%;
   }
 }

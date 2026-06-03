@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Seasonal favicon">
+  <defs>
+    <radialGradient id="favGlow" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.92" />
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.38" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" fill="transparent" />
+  <image href="/images/favicons/favicon-512.png" x="0" y="0" width="512" height="512" preserveAspectRatio="xMidYMid meet" />
+  <ellipse cx="256" cy="238" rx="176" ry="176" fill="url(#favGlow)" opacity="0.32" />
+</svg>

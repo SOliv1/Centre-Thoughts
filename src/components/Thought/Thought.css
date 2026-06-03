@@ -1,23 +1,236 @@
-.thoughts {
-  list-style-type: none;
-  padding: 0;
-}
-
 .Thought {
-  padding: 1rem;
-  margin-bottom: 1rem;
+  position: relative;
+  aspect-ratio: 1;
+  width: clamp(11.25rem, 30vw, 16rem);
+  padding: 3.2rem 2rem 2rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: #8b14ed;
-  color: #fff;
-  border: 1px solid #fff;
-  border-radius: 10px;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0) 46%),
+    var(--orb-image),
+    radial-gradient(circle at 35% 28%, var(--orb-core), var(--orb-mid) 42%, var(--orb-edge) 100%);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 124%, cover, cover;
+  color: var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  border-radius: 50%;
+  box-shadow:
+    0 0 96px var(--orb-glow-active),
+    0 0 150px var(--orb-glow),
+    0 34px 96px rgba(34, 45, 41, 0.17);
+  overflow: visible;
+  filter: brightness(1.045) saturate(1.04);
+  transform: scale(1.018);
+  animation: thoughtOrbBreathe 5.5s ease-in-out infinite;
+  transition: opacity 2.5s ease, transform 2.5s ease, filter 2.5s ease, box-shadow 2.5s ease;
 }
 
 .Thought .remove-button {
-  font-size: 32px;
+  position: absolute;
+  top: 1.1rem;
+  right: 1.15rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  font-size: 1.5rem;
+  line-height: 1;
   border: 0;
+  border-radius: 50%;
   background: transparent;
-  color: #fff;
+  color: currentColor;
+  opacity: 0.42;
+}
+
+.Thought .remove-button:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+  opacity: 0.7;
+}
+
+.Thought .thought-ripples {
+  border-radius: 50%;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+}
+
+.Thought .thought-ripples span {
+  border: 1.5px solid rgba(255, 255, 255, 0.54);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 34px rgba(255, 255, 255, 0.18),
+    0 0 28px rgba(255, 255, 255, 0.16);
+  left: 50%;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.22);
+}
+
+.Thought .thought-ripples span:nth-child(1) {
+  height: 42%;
+  width: 42%;
+  animation: thoughtRipple 5.2s ease-out 0.1s infinite;
+}
+
+.Thought .thought-ripples span:nth-child(2) {
+  height: 62%;
+  width: 62%;
+  animation: thoughtRipple 5.2s ease-out 0.85s infinite;
+}
+
+.Thought .thought-ripples span:nth-child(3) {
+  height: 82%;
+  width: 82%;
+  animation: thoughtRipple 5.2s ease-out 1.65s infinite;
+}
+
+.Thought .thought-pebble {
+  align-items: center;
+  aspect-ratio: 1;
+  background:
+    radial-gradient(circle at 36% 28%, rgba(255, 255, 255, 0.54), rgba(255, 255, 255, 0.2) 44%, rgba(255, 255, 255, 0.08) 72%);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 30px rgba(255, 255, 255, 0.18),
+    0 0 40px rgba(255, 255, 255, 0.16);
+  display: flex;
+  justify-content: center;
+  max-width: min(10.6rem, 68%);
+  min-width: min(10.6rem, 68%);
+  opacity: 0.88;
+  padding: clamp(1rem, 5vw, 1.45rem);
+  position: relative;
+  z-index: 1;
+  animation: thoughtPebbleArrive 1.4s ease both;
+  transition: opacity 6.2s cubic-bezier(0.22, 0.72, 0.22, 1), transform 6.2s ease, filter 6.2s ease;
+}
+
+.Thought .text {
+  max-width: 10rem;
+  overflow-wrap: anywhere;
+  font-weight: 350;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+
+.Thought .passing-message {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 1.1rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  padding: 0;
+  color: currentColor;
+  font-weight: 380;
+  letter-spacing: 0.045em;
+  opacity: 0;
+  transform: translate(-50%, 0.35rem);
+  transition: opacity 1.8s ease, transform 1.8s ease;
+}
+
+.Thought.is-dissolving .thought-pebble {
+  opacity: 0.3;
+  transform: translateY(-0.32rem) scale(0.972);
+  filter: blur(3px);
+}
+
+.Thought.is-letting-go .thought-pebble {
+  opacity: 0.04;
+  transform: translateY(-0.42rem) scale(0.96);
+  filter: blur(5px);
+}
+
+.Thought.is-dissolving .thought-ripples,
+.Thought.is-letting-go .thought-ripples {
+  opacity: 0.18;
+  transition: opacity 5.4s ease;
+}
+
+.Thought.is-letting-go {
+  transform: scale(0.98);
+  filter: brightness(0.96) saturate(0.92);
+  box-shadow:
+    0 0 44px var(--orb-glow),
+    0 24px 70px rgba(34, 45, 41, 0.1);
+}
+
+.Thought.is-dissolving .remove-button,
+.Thought.is-letting-go .remove-button {
+  opacity: 0;
+}
+
+.Thought.is-letting-go .passing-message {
+  opacity: 0.82;
+  transform: translate(-50%, 0);
+}
+
+@keyframes thoughtPebbleArrive {
+  from {
+    opacity: 0;
+    transform: translateY(0.28rem) scale(0.86);
+    filter: blur(3px);
+  }
+
+  to {
+    opacity: 0.88;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes thoughtOrbBreathe {
+  0%,
+  100% {
+    box-shadow:
+      0 0 96px var(--orb-glow-active),
+      0 0 150px var(--orb-glow),
+      0 34px 96px rgba(34, 45, 41, 0.17);
+    filter: brightness(1.045) saturate(1.04);
+    transform: scale(1.018);
+  }
+
+  50% {
+    box-shadow:
+      0 0 98px var(--orb-glow-active),
+      0 0 153px var(--orb-glow),
+      0 34px 96px rgba(34, 45, 41, 0.17);
+    filter: brightness(1.065) saturate(1.06);
+    transform: scale(1.038);
+  }
+}
+
+@keyframes thoughtRipple {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+
+  24% {
+    opacity: 0.68;
+  }
+
+  58% {
+    opacity: 0.42;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Thought,
+  .Thought .thought-pebble,
+  .Thought .thought-ripples span,
+  .Thought .passing-message {
+    animation: none;
+    transition-duration: 0.01ms;
+  }
 }

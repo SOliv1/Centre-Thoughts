@@ -1,11 +1,12 @@
 html {
-  background: rgb(183, 232, 249);
- /* background: aliceblue;*/
+  min-height: 100%;
+  background: #eef2ee;
 }
 
 body {
   margin: 0;
-  font-size: 16pt;
+  min-height: 100vh;
+  font-size: 16px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -13,88 +14,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-input,
-button {
-  font: inherit;
+#app {
+  min-height: 100vh;
+}
+
+* {
   box-sizing: border-box;
 }
-
-input[type='submit'],
-button {
-  cursor: pointer;
-}
-
-.App {
-  margin: 0 auto;
-  max-width: 600px;
-  width: 95%;
-}
-
-.App h1:before {
-  content: '💭';
-  margin-right: 0.5em;
-}
-
-.AddThoughtForm {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.AddThoughtForm input {
-  padding: 1.5rem;
-  border: 1px solid #666;
-  border-radius: 3px;
-}
-
-.AddThoughtForm input[type='text'] {
-  flex-grow: 1;
-  margin-right: 0.5rem;
-}
-
-.thoughts {
-  list-style-type: none;
-  padding: 0;
-}
-
-.Thought {
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 3px;
-  background-color: #eee;
-  
-}
-
-.Thought .remove-button {
-  font-size: 80%;
-  float: right;
-  border: 0;
-  border-radius: 3px;
-  background: transparent;
-}
-
-.Thought .remove-button:hover {
-  color: #fff;
-  background-color: #000;
-}
-
-@media screen and (max-width: 475px) {
-  .App h1 {
-    text-align: center;
-  }
-
-  .App h1:before {
-    content: '';
-    margin-right: 0;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .AddThoughtForm input[type='text'] {
-    margin: 10px 0;
-  }
-
-  .AddThoughtForm input[type='submit'] {
-    width: 100%;
-  }
-  }
