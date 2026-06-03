@@ -6,7 +6,7 @@ View the Project [here](https://passing-thoughts-react.netlify.app/)
 
 # Getting Started with Create React App
 
-## Passing Thoughts 
+## Centre Notes (formally Passing Thoughts)
 
 It is good to know that you can post your thoughts and it will soon disappear.  Once you post a short thought, it will vanish after just 15 seconds.
 
