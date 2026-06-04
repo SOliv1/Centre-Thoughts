@@ -155,6 +155,17 @@ button {
   font-weight: 360;
 }
 
+.CompanionLinkStudio {
+  background: var(--button);
+  border-color: transparent;
+  color: #fff;
+}
+
+.CompanionLinkStudio:hover {
+  background: var(--button-hover);
+  color: #fff;
+}
+
 .App main {
   align-items: center;
   display: flex;

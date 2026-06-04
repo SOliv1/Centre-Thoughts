@@ -13,6 +13,25 @@ const moodChoices = [
    { id: 'midnight', label: 'Midnight' },
 ];
 
+const CENTRE_NOTES_URL = 'https://centre-notes.netlify.app/';
+const DAILY_REFLECTIONS_URL = 'https://soliv1.github.io/Daily-Reflections-App/';
+const SEASONAL_MIND_SPACE_URL = 'https://soliv1.github.io/Seasonal-mind-space/';
+const SEASONAL_STUDIO_URL = 'https://seasonal.studio/studio/about';
+
+const getReturnUrl = () => {
+   if (typeof window === 'undefined') {
+      return SEASONAL_STUDIO_URL;
+   }
+
+   const params = new URLSearchParams(window.location.search);
+   return params.get('returnTo') || SEASONAL_STUDIO_URL;
+};
+
+const withReturn = url => {
+   const separator = url.includes('?') ? '&' : '?';
+   return `${url}${separator}from=centre-notes&returnTo=${encodeURIComponent(CENTRE_NOTES_URL)}`;
+};
+
 const App = () => {
    const [thoughts, setThoughts] = useState([]);
    const [moodBlock, setMoodBlock] = useState(getSeasonalMoodBlock);
@@ -21,6 +40,7 @@ const App = () => {
    const [isShareDrawerOpen, setIsShareDrawerOpen] = useState(false);
    const [shareStatus, setShareStatus] = useState('');
    const activeThought = thoughts[0];
+   const returnUrl = getReturnUrl();
    const shareCaption = 'Centre Notes - a small thought, held briefly, then let go. #CentreNotes #ReflectionsInLight #SeasonalStudio';
 
    useEffect(() => {
@@ -62,8 +82,9 @@ const App = () => {
             <h1>Centre Notes</h1>
             <p>Write a thought, hold it tightly, let it pass.</p>
             <div className="CompanionLinks" aria-label="Companion spaces">
-               <a className="CompanionLink" href="https://soliv1.github.io/Daily-Reflections-App/" target="_blank" rel="noreferrer">Carry this into Daily Reflections</a>
-               <a className="CompanionLink CompanionLinkSecondary" href="https://soliv1.github.io/Seasonal-mind-space/" target="_blank" rel="noreferrer">Explore Seasonal Mind Space</a>
+               <a className="CompanionLink CompanionLinkStudio" href={returnUrl}>Return to Seasonal Studio</a>
+               <a className="CompanionLink" href={withReturn(DAILY_REFLECTIONS_URL)}>Carry this into Daily Reflections</a>
+               <a className="CompanionLink CompanionLinkSecondary" href={withReturn(SEASONAL_MIND_SPACE_URL)}>Explore Seasonal Mind Space</a>
             </div>
          </header>
          <main>
@@ -105,7 +126,9 @@ const App = () => {
                </div>
             </section>
             <div className="ShareDrawerActions">
-               <a href="https://soliv1.github.io/Daily-Reflections-App/" target="_blank" rel="noreferrer">Carry this into today</a>
+               <a href={returnUrl}>Return to Seasonal Studio</a>
+               <a href={withReturn(DAILY_REFLECTIONS_URL)}>Carry this into today</a>
+               <a href={withReturn(SEASONAL_MIND_SPACE_URL)}>Open Seasonal Mind Space</a>
                <button type="button" onClick={copyShareCaption}>Share this reflection</button>
                <button type="button" onClick={resetRoom}>Reset room</button>
             </div>
